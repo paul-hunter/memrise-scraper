@@ -24,10 +24,11 @@ start = int(sys.argv[2]) // 20 + 1
 stop = int(sys.argv[3]) // 20 + 1
 
 with open('output.csv', 'w', encoding='utf-8', newline='') as file:
-    print(start, ",", stop)
+    writer = csv.writer(file)
+    writer.writerow(["tl", "en"])
+
     for x in range(start, stop):
         # example url without number after it
         # https://app.memrise.com/course/426582/top-5000-words-in-greek/
         newurl = url + str(x)
-        writer = csv.writer(file)
         writer.writerows(retrieve_words(newurl))
